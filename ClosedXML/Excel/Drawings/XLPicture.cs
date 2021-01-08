@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using ClosedXML.Utils;
 
 namespace ClosedXML.Excel.Drawings
 {
@@ -418,7 +418,7 @@ namespace ClosedXML.Excel.Drawings
         {
             var guid = ImageCodecInfo.GetImageDecoders().FirstOrDefault(c => c.MimeType.Equals(mimeType, StringComparison.OrdinalIgnoreCase))?.FormatID;
             if (!guid.HasValue) return null;
-            var property = typeof(System.Drawing.Imaging.ImageFormat).GetProperties(BindingFlags.Public | BindingFlags.Static)
+            var property = typeof(ImageFormat).GetProperties(BindingFlags.Public | BindingFlags.Static)
                 .FirstOrDefault(pi => (pi.GetValue(null, null) as ImageFormat).Guid.Equals(guid.Value));
 
             if (property == null) return null;

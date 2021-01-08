@@ -22,7 +22,7 @@ namespace ClosedXML.Utils
         }
 
         private static StringFormat defaultStringFormat = StringFormat.GenericTypographic;
-        public static SizeF MeasureString(string s, Font font)
+        public static SizeF MeasureString(string s, GdiFont font)
         {
             SizeF result = Graphics.MeasureString(s, font, Int32.MaxValue, defaultStringFormat);
             return result;

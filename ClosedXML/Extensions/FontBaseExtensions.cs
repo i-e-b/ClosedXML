@@ -23,14 +23,14 @@ namespace ClosedXML.Excel
             font.FontCharSet = sourceFont.FontCharSet;
         }
 
-        public static Double GetHeight(this IXLFontBase fontBase, Dictionary<IXLFontBase, Font> fontCache)
+        public static Double GetHeight(this IXLFontBase fontBase, Dictionary<IXLFontBase, GdiFont> fontCache)
         {
             var font = GetCachedFont(fontBase, fontCache);
             var textHeight = GraphicsUtils.MeasureString("X", font).Height;
             return (double)textHeight * 0.85;
         }
 
-        public static Double GetWidth(this IXLFontBase fontBase, String text, Dictionary<IXLFontBase, Font> fontCache)
+        public static Double GetWidth(this IXLFontBase fontBase, String text, Dictionary<IXLFontBase, GdiFont> fontCache)
         {
             if (String.IsNullOrWhiteSpace(text))
                 return 0;
@@ -44,11 +44,11 @@ namespace ClosedXML.Excel
             return width;
         }
 
-        private static Font GetCachedFont(IXLFontBase fontBase, Dictionary<IXLFontBase, Font> fontCache)
+        private static GdiFont GetCachedFont(IXLFontBase fontBase, Dictionary<IXLFontBase, GdiFont> fontCache)
         {
-            if (!fontCache.TryGetValue(fontBase, out Font font))
+            if (!fontCache.TryGetValue(fontBase, out GdiFont font))
             {
-                font = new Font(fontBase.FontName, (float)fontBase.FontSize, GetFontStyle(fontBase));
+                font = new GdiFont(fontBase.FontName, (float)fontBase.FontSize, GetFontStyle(fontBase));
                 fontCache.Add(fontBase, font);
             }
             return font;

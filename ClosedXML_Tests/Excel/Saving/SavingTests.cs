@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using ClosedXML.Utils;
 
 namespace ClosedXML_Tests.Excel.Saving
 {

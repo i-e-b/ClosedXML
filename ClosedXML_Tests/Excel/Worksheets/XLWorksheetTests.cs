@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using ClosedXML.Utils;
 
 namespace ClosedXML_Tests
 {

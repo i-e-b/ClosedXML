@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using ClosedXML.Utils;
 
 namespace ClosedXML.Excel.Drawings
 {

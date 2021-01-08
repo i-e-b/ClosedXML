@@ -2,6 +2,7 @@ using ClosedXML.Excel.Drawings;
 using System;
 using System.Drawing;
 using System.IO;
+using ClosedXML.Utils;
 
 namespace ClosedXML.Excel
 {
