@@ -15,7 +15,7 @@ namespace ClosedXML.Utils
                 if (threadLocalGraphics == null)
                 {
                     var image = new Bitmap(1, 1);
-                    threadLocalGraphics = Graphics.FromImage(image);
+                    threadLocalGraphics = System.Drawing.Graphics.FromImage(image);
                 }
                 return threadLocalGraphics;
             }

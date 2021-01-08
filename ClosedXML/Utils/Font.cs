@@ -6,17 +6,22 @@ namespace ClosedXML.Utils
     /// <summary>
     /// Wrapper for System.Drawing.Font to keep naming clear.
     /// </summary>
-    public class GdiFont : System.Drawing.Font
+    [Janitor.SkipWeaving]
+    public class GdiFont : System.Drawing.Font, IDisposable
     {
+        private readonly string _name;
+        private readonly FontStyle _style;
+
         public GdiFont(string name, float size, FontStyle style)
         {
-            throw new NotImplementedException();
+            _name = name;
+            Size = size;
+            _style = style;
         }
 
-        public GdiFont()
-        {
-            throw new NotImplementedException();
-        }
+        public float Size { get; set; }
+
+        public void Dispose() { }
     }
 
     [Flags]
@@ -53,14 +58,15 @@ namespace System.Drawing
     /// </summary>
     public class Graphics
     {
-        public Graphics FromImage(Bitmap image)
+        public static Graphics FromImage(Bitmap image)
         {
-            throw new NotImplementedException();
+            return new Graphics();
         }
 
         public SizeF MeasureString(string s, GdiFont font, int maxValue, StringFormat defaultStringFormat)
         {
-            throw new NotImplementedException();
+            var guess = s.Length * font.Size * 0.582454321976516f;
+            return new SizeF(guess, font.Size * 1.2f);
         }
 
         public float DpiX => 96;

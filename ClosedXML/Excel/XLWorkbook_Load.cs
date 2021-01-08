@@ -1107,6 +1107,8 @@ namespace ClosedXML.Excel
 
         private void LoadDrawings(WorksheetPart wsPart, IXLWorksheet ws)
         {
+            return; // not enabled!
+            /*
             if (wsPart.DrawingsPart != null)
             {
                 var drawingsPart = wsPart.DrawingsPart;
@@ -1180,6 +1182,7 @@ namespace ClosedXML.Excel
                     }
                 }
             }
+        */
         }
 
         private static Int32 ConvertFromEnglishMetricUnits(long emu, float resolution)

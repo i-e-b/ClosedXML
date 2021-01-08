@@ -1,32 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ClosedXML.Utils
 {
-
-    /// <summary>
-    /// Fake holder. This version of ClosedXML does not support imaging
-    /// </summary>
-    public class ImageCodecInfo
-    {
-        public Guid FormatID { get; set; }
-
-        public static IEnumerable<ImageCodecInfo> GetImageDecoders()
-        {
-            yield break;
-        }
-
-        public string MimeType { get; set; }
-    }
-
     /// <summary>
     /// Fake holder. This version of ClosedXML does not support imaging
     /// </summary>
     [Janitor.SkipWeaving]
     public class Image
     {
-        public ImageFormat RawFormat { get; set; }
+        public ImageFormat RawFormat => new ImageFormat {Guid = ImageCodecInfo.GetImageDecoders()!.First()!.FormatID};
         public int Width { get; set; }
         public int Height { get; set; }
     }
@@ -37,13 +21,19 @@ namespace ClosedXML.Utils
     [Janitor.SkipWeaving]
     public class Bitmap : Image, IDisposable
     {
+
         public Bitmap(MemoryStream imageStream)
         {
+            Console.WriteLine("### Bitmap.ctor");
+            Width = 1;
+            Height = 1;
+            //throw new NotImplementedException("Imaging is disabled in this build of ClosedXML: Bitmap.ctor");
         }
 
         public Bitmap(int width, int height)
         {
-            throw new NotImplementedException();
+            Width = width;
+            Height = height;
         }
 
 
@@ -51,12 +41,15 @@ namespace ClosedXML.Utils
 
         public void Save(MemoryStream target, ImageFormat imageFormat)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("### Bitmap.Save");
+            //throw new NotImplementedException("Imaging is disabled in this build of ClosedXML: Bitmap.Save");
         }
 
         public static Bitmap FromStream(Stream resourceStream)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("### Bitmap.FromStream");
+            //throw new NotImplementedException("Imaging is disabled in this build of ClosedXML: Bitmap.FromStream");
+            return new Bitmap(1,1);
         }
     }
 }
