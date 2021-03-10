@@ -66,8 +66,7 @@ namespace System.Drawing
 
         public SizeF MeasureString(string s, GdiFont font, int maxValue, StringFormat defaultStringFormat)
         {
-            var fudgeFactor = 0.85f;
-            var guess = s!.Select(CharSize).Sum() * font!.Size * fudgeFactor;
+            var guess = s!.Select(CharSize).Sum() * font!.Size;
             return new SizeF(guess, font.Size * 1.2f);
         }
 
